@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#17263c" />
+  <title>Monster Truck Math Arena</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game-canvas" aria-label="3D monster truck math arena. Drag to rotate the view and scroll or pinch to zoom."></canvas>
+
+  <div id="loading" role="status" aria-live="polite">
+    <div class="loader-card">
+      <div class="loader-truck">🏁</div>
+      <h1>Starting the Math Arena…</h1>
+      <p>Warming up the monster trucks!</p>
+    </div>
+  </div>
+
+  <main id="hud">
+    <div class="topbar">
+      <div class="brand"><img src="mtm.png" alt="Monster Truck Math"></div>
+      <div class="mode-switcher" role="group" aria-label="Choose game mode">
+        <button class="mode-button" type="button" data-mode="easy" aria-pressed="true" title="Easy: count the trucks">
+          <span class="mode-icon" aria-hidden="true">🛞</span><span class="mode-label">Easy</span>
+        </button>
+        <button class="mode-button" type="button" data-mode="hard" aria-pressed="false" title="Hard: addition and subtraction up to 20">
+          <span class="mode-icon" aria-hidden="true">🔥</span><span class="mode-label">Hard</span>
+        </button>
+        <button class="mode-button" type="button" data-mode="tens" aria-pressed="false" title="Times ten: the screen shows the literal number of trucks">
+          <span class="mode-icon" aria-hidden="true">🔟</span><span class="mode-label">10×</span>
+        </button>
+        <button class="mode-button" type="button" data-mode="multiply" aria-pressed="false" title="Multiply the number of trucks">
+          <span class="mode-icon" aria-hidden="true">✖️</span><span class="mode-label">Multiply</span>
+        </button>
+      </div>
+      <div class="stats" aria-label="Game statistics">
+        <div class="stat">Score <strong id="score">0</strong></div>
+        <div class="stat">Streak <strong id="streak">0</strong> 🔥</div>
+      </div>
+    </div>
+
+    <section class="center-ui" aria-label="Math question">
+      <div class="question-card">
+        <div id="feedback" aria-live="assertive">Count the monster trucks!</div>
+        <div id="equation">2 + 1 = ?</div>
+        <div class="answers">
+          <button class="answer" id="answer-0" type="button"><span class="keycap">1</span><span class="answer-value">3</span></button>
+          <button class="answer" id="answer-1" type="button"><span class="keycap">2</span><span class="answer-value">4</span></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-row">
+      <div class="controls">
+        <button id="sound-button" class="icon-button" type="button" aria-label="Mute sound" title="Sound">🔊</button>
+        <button id="fullscreen-button" class="icon-button" type="button" aria-label="Enter full screen" title="Full screen">⛶</button>
+        <button id="restart-button" class="icon-button" type="button" aria-label="Restart game" title="Restart">↻</button>
+      </div>
+    </div>
+  </main>
+
+  <div id="celebration" aria-hidden="true">ROAR-SOME!</div>
+  <div id="stunt-caption" aria-hidden="true">STREAK <span id="stunt-streak">5</span>!</div>
+  <div id="error-box"><div><h1>Could not start the 3D arena</h1><p>This single HTML file loads Three.js from the internet. Check your connection, then reopen the file.</p></div></div>
+
+  <script src="script.js"></script>
+
+  <!-- Three.js r152, MIT License. A CDN fallback is loaded automatically if this source is unavailable. -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js" onload="bootGame()" onerror="loadThreeBackup()"></script>
+</body>
+</html>
